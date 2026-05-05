@@ -18,10 +18,29 @@ End-to-end supervised learning pipeline that predicts wine quality (binary: high
 ├── requirements.txt      # Pinned Python dependency ranges
 ├── final_report.pdf      # IEEE conference format final report (5 pages)
 ├── README.md             # This file
-└── .gitignore
+├── .gitignore
+│
+├── data/                 # UCI Wine Quality CSVs (canonical input)
+│   ├── winequality-red.csv      (1,599 samples)
+│   └── winequality-white.csv    (4,898 samples)
+│
+├── figures/              # 11 figures produced by final_pipeline.py
+│   ├── roc_test_all.png            # ROC curves with bootstrap CIs
+│   ├── pr_curves_test.png          # PR curves
+│   ├── calibration_test.png        # Reliability diagrams + Brier scores
+│   ├── ablation_all_models.png     # Base vs +engineered features (3 models)
+│   ├── multiseed_boxplot.png       # AUC over 5 stratified splits
+│   ├── threshold_tuning.png        # LR threshold sweep on validation
+│   ├── confusion_test_all.png      # Confusion matrices (3 models)
+│   ├── rf_feature_importance.png   # RF importances (engineered = orange)
+│   ├── lr_coefficients.png         # LR L2 coefficients (signed)
+│   ├── lr_reg_path.png             # LR regularization-path CV-AUC
+│   └── learning_curve_rf.png       # RF train vs CV-val AUC
+│
+└── results.json          # All numerical results dumped after pipeline run
 ```
 
-The pipeline downloads the dataset, performs preprocessing and feature engineering, runs hyperparameter tuning for all three models, and writes figures and metrics to disk.
+The data, figures, and results.json are committed to lock the canonical run for verification — the pipeline regenerates them on every fresh execution.
 
 ---
 
